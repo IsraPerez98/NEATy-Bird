@@ -4,11 +4,13 @@ import time
 import os
 import random
 
+scale = pygame.transform.scale
 scale2x = pygame.transform.scale2x
 img_load = pygame.image.load
 
-WIN_WIDTH = 500
-WIN_HEIGHT = 800
+
+WIN_WIDTH = 400
+WIN_HEIGHT = 500
 
 IMG_FOLDER = "./imgs/"
 
@@ -19,9 +21,11 @@ BIRD_IMAGES = [ scale2x(img_load(os.path.join(IMG_FOLDER,"bird1.png"))),
 
 PIPE_IMG = scale2x(img_load(os.path.join(IMG_FOLDER,"pipe.png")))
 
-BASE_IMG = scale2x(img_load(os.path.join(IMG_FOLDER, "base.png")))
+#BASE_IMG = scale2x(img_load(os.path.join(IMG_FOLDER, "base.png")))
+BASE_IMG = scale(img_load(os.path.join(IMG_FOLDER, "base.png")), (WIN_WIDTH, WIN_HEIGHT))
 
-BG_IMG = scale2x(img_load(os.path.join(IMG_FOLDER, "bg.png")))
+#BG_IMG = scale2x(img_load(os.path.join(IMG_FOLDER, "bg.png")))
+BG_IMG = scale(img_load(os.path.join(IMG_FOLDER, "bg.png")), (WIN_WIDTH, WIN_HEIGHT))
 
 class Bird: 
     IMGS = BIRD_IMAGES
