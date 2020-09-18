@@ -24,7 +24,7 @@ class Pipe:
         self.set_height()
 
     def set_height(self):
-        self.height = random.randrange(50, 450)
+        self.height = random.randrange(80, img.WIN_HEIGHT -  350)
         self.height_top = self.height - self.PIPE_TOP_IMG.get_height()
         self.height_bottom = self.height + self.VERTICAL_GAP
 
@@ -40,8 +40,8 @@ class Pipe:
         top_mask = pygame.mask.from_surface(self.PIPE_TOP_IMG)
         bottom_mask = pygame.mask.from_surface(self.PIPE_BOTTOM_IMG)
 
-        top_offset = (self.x - bird.x, self.top - round(bird.y))
-        bottom_offset = (self.x - bird.x, self.bottom - round(bird.y))
+        top_offset = (self.x - bird.x, self.height_top - round(bird.y))
+        bottom_offset = (self.x - bird.x, self.height_bottom - round(bird.y))
 
         bottom_collide_point = bird_mask.overlap(bottom_mask, bottom_offset)
         top_collide_point = bird_mask.overlap(top_mask, top_offset)

@@ -26,6 +26,7 @@ def main():
     win = pygame.display.set_mode((img.WIN_WIDTH,img.WIN_HEIGHT))
     clock = pygame.time.Clock()
 
+    score = 0
     playing = True
 
     while playing:
@@ -34,7 +35,28 @@ def main():
             if event.type == pygame.QUIT:
                 playing = False
         
-        bird.move()
+        #bird.move()
+        
+        pipes_to_remove = []
+        add_pipe = False # should we add a new pipe to the game?
+        for pipe in pipes:
+            if pipe.collide(bird):
+                pass
+            if pipe.x + pipe.PIPE_TOP_IMG.get_width() < 0:
+                pipes_to_remove.append(pipe)
+
+            if not pipe.completed and pipe.x < bird.x:
+                pipe.completed = True
+                add_pipe = True
+            
+            pipe.move()
+        
+        if add_pipe:
+            score += 1
+            pipes.append(Pipe(700))
+
+        
+        base.move()
         draw_window(win,bird,pipes,base)
 
     pygame.quit()

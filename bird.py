@@ -79,5 +79,5 @@ class Bird:
 
         win.blit(rotated_image, new_rectangle.topleft)
 
-        def get_mask(self):
-            return pygame.mask.from_surface(self.img)
+    def get_mask(self):
+        return pygame.mask.from_surface(self.img)
