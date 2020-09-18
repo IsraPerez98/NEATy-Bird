@@ -54,6 +54,9 @@ def main():
         if add_pipe:
             score += 1
             pipes.append(Pipe(700))
+        
+        for pipe in pipes_to_remove:
+            pipes.remove(pipe)
 
         
         base.move()
