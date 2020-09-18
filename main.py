@@ -8,7 +8,11 @@ from bird import Bird
 from base import Base
 from pipe import Pipe
 
-def draw_window(win,bird, pipes, base):
+pygame.font.init()
+
+STAT_FONT = pygame.font.SysFont("comicsans", 50)
+
+def draw_window(win,bird, pipes, base, score):
     win.blit(img.BG_IMG, (0,0))
     
     for pipe in pipes:
@@ -17,6 +21,10 @@ def draw_window(win,bird, pipes, base):
     base.draw(win)
     
     bird.draw(win)
+
+    text = STAT_FONT.render("Score: " + str(score), 1, (255,255,255))
+    win.blit(text, (img.WIN_WIDTH - 10 - text.get_width(), 10))
+
     pygame.display.update()
 
 def main():
@@ -57,10 +65,13 @@ def main():
         
         for pipe in pipes_to_remove:
             pipes.remove(pipe)
+        
+        if bird.y + bird.img.get_height() >= (img.WIN_HEIGHT - 70):
+            pass
 
         
         base.move()
-        draw_window(win,bird,pipes,base)
+        draw_window(win,bird,pipes,base,score)
 
     pygame.quit()
     quit()
